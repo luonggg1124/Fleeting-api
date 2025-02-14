@@ -1,0 +1,31 @@
+syntax = "proto3";
+
+package cache;
+
+service CacheService {
+    rpc GetCache (CacheRequest) returns (CacheResponse);
+    rpc SetCache (CacheRequest) returns (SetCacheResponse);
+    rpc DeleteCache (CacheRequest) returns (DeleteCacheResponse);
+}
+
+message CacheRequest {
+    string key = 1;
+}
+
+message CacheResponse {
+    string value = 1;
+}
+
+message SetCacheRequest {
+  string key = 1;
+  string value = 2;
+  int32 ttl = 3;
+}
+
+message SetCacheResponse {
+  string message = 1;
+}
+
+message DeleteCacheResponse {
+  string message = 1;
+}

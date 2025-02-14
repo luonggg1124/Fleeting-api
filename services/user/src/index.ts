@@ -15,7 +15,7 @@ app.get('/',(req: Request, res: Response) => {
     });
     return;
 });
-
+    
 AppDataSource.initialize().then(() => {
     console.log("Connected to postgres server");
     app.listen(PORT,() => {

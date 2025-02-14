@@ -36,6 +36,8 @@ services:
       - /app/dist
     env_file:
       - ./services/user/.env
+    depends_on:
+      - cache-service
     networks:
       - app-network
   notification-service:
@@ -70,7 +72,17 @@ services:
       - /app/dist
     networks:
       - app-network
-  
+  cache-service: 
+    container_name: cache-service
+    build: 
+      context: ./services/cache
+      dockerfile: Dockerfile
+    env_file:
+      - ./services/cache/.env
+    ports:
+      - "50051:50051"
+    networks:
+      - app-network
 networks:
   app-network:
     driver: bridge
