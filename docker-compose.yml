@@ -83,6 +83,16 @@ services:
       - "50051:50051"
     networks:
       - app-network
+  mail-service: 
+    container_name: mail-service
+    build: 
+      context: ./services/mail
+      dockerfile: Dockerfile
+    env_file:
+      - ./services/mail/.env
+    networks:
+      - app-network
+    
 networks:
   app-network:
     driver: bridge

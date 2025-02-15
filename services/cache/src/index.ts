@@ -11,10 +11,13 @@ const cacheProto: any = grpc.loadPackageDefinition(packageDefinition).cache;
 const cacheService = {
     GetCache: async (call: any, callback:any) => {
         const value = await redis.get(call.request.key);
+        console.log("GetCache");
         callback(null,{value: value || ""});
     },
     SetCache: async (call:any, callback:any) => {
         await redis.setex(call.request.key, call.request.ttl || 300, call.request.value);
+        console.log("SetCache");
+        
         callback(null, {message: "Cached successfully"})
     },
     DeleteCache: async (call: any, callback: any) => {

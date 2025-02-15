@@ -14,6 +14,6 @@ export const AppDataSource = new DataSource({
   },  
   synchronize: true, //false in production
   logging: true,
-  entities: ["./src/entities/**/*.ts"],
-  migrations: ['./src/migrations/**/*.ts'],
+  entities: ["./src/models/entities/**/*.ts"],
+  migrations: ['./src/models/migrations/**/*.ts'],
 });

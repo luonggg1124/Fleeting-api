@@ -1,14 +1,15 @@
 import cacheClient from "../config/cache-client";
 import { AppDataSource } from "../config/data-source";
 import { ConflictException } from "../exceptions/ConflictException";
-import { UserRepository } from "../repositories/UserRepository";
+import { UserRepository } from "../models/repositories/UserRepository";
 import jwt from "jsonwebtoken";
 import { randomNumberString } from "../utils/number";
+import sendMailVerificationCode from "../mail/send-verification-code";
 export class AuthService {
   private userRepository: UserRepository;
 
-  constructor() {
-    this.userRepository = new UserRepository(AppDataSource.manager);
+  constructor(userRepository:UserRepository = new UserRepository(AppDataSource.manager)) {
+    this.userRepository = userRepository;
   }
   protected async storeRefreshToken(
     userId: string,
@@ -39,7 +40,8 @@ export class AuthService {
     if(existingCode){
       await cacheClient.del(`verificationCode:${email}`);
     }
-    
+    await cacheClient.set(`verificationCode:${email}`,code,60*5);
+    await sendMailVerificationCode(code, email);
   }
   async register(data: {
     email: string;

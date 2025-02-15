@@ -14,9 +14,6 @@
   "dependencies": {
     "@grpc/grpc-js": "^1.12.6",
     "@grpc/proto-loader": "^0.7.13",
-    "@types/amqplib": "^0.10.6",
-    "@types/nodemailer": "^6.4.17",
-    "@types/pg": "^8.11.11",
     "amqplib": "^0.10.5",
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
@@ -26,12 +23,15 @@
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.9.7",
     "nodemailer": "^6.10.0",
-    "nodemon": "^3.1.9",
     "pg": "^8.13.1",
     "reflect-metadata": "^0.2.2",
     "typeorm": "^0.3.20"
   },
   "devDependencies": {
+    "nodemon": "^3.1.9",
+    "@types/amqplib": "^0.10.6",
+    "@types/nodemailer": "^6.4.17",
+    "@types/pg": "^8.11.11",
     "@types/bcryptjs": "^2.4.6",
     "@types/dotenv": "^8.2.3",
     "@types/express": "^5.0.0",

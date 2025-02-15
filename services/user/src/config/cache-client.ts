@@ -8,7 +8,7 @@ const packageDefinition = protoLoader.loadSync(
 const cacheProto: any = grpc.loadPackageDefinition(packageDefinition).cache;
 
 const cacheClient = new cacheProto.CacheService(
-  `cache-service:${process.env.GRPC_PORT}`,
+  process.env.CACHE_SERVER_URL,
   grpc.credentials.createInsecure()
 );
 cacheClient.get = (key: string): Promise<any> => {

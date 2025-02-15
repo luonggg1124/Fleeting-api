@@ -2,6 +2,7 @@ import "reflect-metadata";
 import express, { Request, Response } from "express";
 import dotenv from "dotenv";
 import { AppDataSource } from "./config/data-source";
+import authRoutes from "./routes/v1/auth.route";
 
 dotenv.config();
 const PORT = process.env.PORT || 4001;
@@ -15,7 +16,7 @@ app.get('/',(req: Request, res: Response) => {
     });
     return;
 });
-    
+app.use('/auth',authRoutes);
 AppDataSource.initialize().then(() => {
     console.log("Connected to postgres server");
     app.listen(PORT,() => {
