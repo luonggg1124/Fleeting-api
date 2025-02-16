@@ -41,21 +41,29 @@ export class AuthService {
       await cacheClient.del(`verificationCode:${email}`);
     }
     await cacheClient.set(`verificationCode:${email}`,code,60*5);
+    
     await sendMailVerificationCode(code, email);
   }
-  async register(data: {
-    email: string;
-    password: string;
-    givenName: string;
-    familyName: string;
-  }) {
+  async register(
+    email:string
+  //   data: {
+  //   email: string;
+  //   password: string;
+  //   givenName: string;
+  //   familyName: string;
+  // }
+) {
     
-    const user = await this.userRepository.create({
-      email: data.email,
-      password: this.userRepository.hasPassword(data.password) as any,
-      fullName: `${data.givenName} ${data.familyName}`,
-      isVerified: false,
-      isBanned: false
-    })
+    // const user = await this.userRepository.create({
+    //   email: data.email,
+    //   password: this.userRepository.hasPassword(data.password) as any,
+    //   fullName: `${data.givenName} ${data.familyName}`,
+    //   isVerified: false,
+    //   isBanned: false
+    // });
+    const key=  await cacheClient.get(`verificationCode:${email}`);
+    console.log(key);
+    return key;
+
   }
 }

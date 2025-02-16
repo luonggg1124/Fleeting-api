@@ -1,23 +1,14 @@
-FROM node:23.7.0
+FROM python:3.14.0a5-bookworm
 
 WORKDIR /app
-
-RUN npm install -g pnpm@10.2.1
-
-
-
-COPY package.json pnpm-lock.yaml ./
-
-
-RUN pnpm install
 
 
 COPY . .
 
 RUN ls -al tsconfig.json
 
-RUN pnpm tsc
+RUN pip install -r requirements.txt
 
 EXPOSE 4003
 
-CMD ["node","dist/index.js"]
+CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "4003"]

@@ -29,8 +29,7 @@ dist/
 *.crt
 
 
-vendor/  
-__pycache__/ 
+vendor/   
 target/ 
 
 
@@ -61,3 +60,41 @@ coverage/
 *.pid
 *.seed
 *.sock
+
+
+
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+
+venv/
+
+.venv/
+
+
+
+*.log
+pip-log.txt
+pip-delete-this-directory.txt
+
+# IDE-specific files
+.vscode/
+.idea/
+*.swp
+
+
+# *.dockerignore
+# docker-compose.override.yml
+
+
+db.sqlite3
+debug.log
+
+
+*.pb.go
+*.pb.cc
+*.pb.h
+*.pb.py
+*.pb2.py

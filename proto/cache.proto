@@ -4,7 +4,7 @@ package cache;
 
 service CacheService {
     rpc GetCache (CacheRequest) returns (CacheResponse);
-    rpc SetCache (CacheRequest) returns (SetCacheResponse);
+    rpc SetCache (SetCacheRequest) returns (SetCacheResponse);
     rpc DeleteCache (CacheRequest) returns (DeleteCacheResponse);
 }
 

@@ -7,11 +7,8 @@ import dotenv from "dotenv";
 dotenv.config();
 
 export const AppDataSource = new DataSource({
-  type: "postgres",
-  url: process.env.DB_URL,
-  ssl: {
-    rejectUnauthorized: false
-  },  
+  type: "mongodb",
+  url: process.env.DB_URL, 
   synchronize: true, //false in production
   logging: true,
   entities: ["./src/models/entities/**/*.ts"],

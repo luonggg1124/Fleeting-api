@@ -1,7 +1,7 @@
 import { Entity, PrimaryGeneratedColumn, OneToOne, JoinColumn, Column } from "typeorm";
 import { User } from "./User";
-import { ThemeSetting } from "../enums/ThemeSetting";
 
+export type ThemeSetting = "dark" | "light";
 @Entity("user_settings")
 export class UserSettings {
     @PrimaryGeneratedColumn("uuid")
@@ -17,6 +17,6 @@ export class UserSettings {
     @Column({ default: true })
     showOnlineStatus: boolean;
 
-    @Column({ type: "enum", enum: ThemeSetting, default: "light" })
+    @Column({ type: "enum", enum: ["dark","light"], default: "light" })
     theme: string;
 }

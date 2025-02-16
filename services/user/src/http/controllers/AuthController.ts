@@ -10,12 +10,19 @@ class AuthController {
     constructor(authService: AuthService = new AuthService()) {
         this.authService = authService;
     }
-    async register(req: Request, res: Response):Promise<void> {
+    register = async (req: Request, res: Response):Promise<void> => {
         try {
-            const errors = validationResult(req);
-            this.authService.register(req.body);
+            //const errors = validationResult(req);
+            const result =  this.authService.register(req.body.email);
+            res.json(result);
+            return;
         } catch (error:any) {
+            console.log(error);
             
+            res.status(500).json({
+                message: "Internal Server Error."
+            });
+            return;
         }
     }
     sendVerificationMail = async (req: Request, res: Response): Promise<void> =>  {
