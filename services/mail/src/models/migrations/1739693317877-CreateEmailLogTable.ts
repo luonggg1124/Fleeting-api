@@ -10,7 +10,7 @@ export class CreateEmailLogTable1739693317877 implements MigrationInterface {
             name: "id",
             type: "uuid",
             isPrimary: true,
-            generationStrategy: "uuid",
+            generationStrategy: "identity",
             default: "uuid_generate_v4()",
           },
           { name: "email", type: "varchar", isNullable: false },

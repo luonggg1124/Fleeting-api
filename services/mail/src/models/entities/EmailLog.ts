@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, Index, UpdateDateColumn } from "typeorm";
+import { Entity, Column, CreateDateColumn, Index, UpdateDateColumn, ObjectIdColumn } from "typeorm";
 
 export type EmailStatus = "success" | "failed" | "pending";
 
@@ -6,7 +6,7 @@ export type EmailStatus = "success" | "failed" | "pending";
     name: "email_logs"
 })
 export class EmailLog {
-    @PrimaryGeneratedColumn("uuid")
+    @ObjectIdColumn()
     id: string;
 
     @Index()

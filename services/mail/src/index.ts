@@ -1,5 +1,6 @@
 import dotenv from "dotenv";
 import { startConsumer } from "./queue/rabbitmq.consumer";
+import { AppDataSource } from "./config/data-source";
 dotenv.config();
 const app =async ():Promise<void> => {
     try {
@@ -10,4 +11,10 @@ const app =async ():Promise<void> => {
         process.exit(1);
     }
 }
-app();
+
+AppDataSource.initialize().then(() => {
+    app();
+    console.log("Database connected!");
+}).catch((error) => {
+    console.log("Error: ",error);
+});

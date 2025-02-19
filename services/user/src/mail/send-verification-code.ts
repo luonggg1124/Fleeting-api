@@ -1,6 +1,9 @@
 import { mailEvent } from "../queue/mail.publisher";
 
-export default async function sendMailVerificationCode(code: string, to: string) {
+export default function sendVerificationCodeMail(
+  code: string,
+  to: string
+) {
   try {
     const html = `<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
   <html xmlns="http://www.w3.org/1999/xhtml">
@@ -243,6 +246,6 @@ export default async function sendMailVerificationCode(code: string, to: string)
   </html>`;
     mailEvent(to, "Your verification code for account", html);
   } catch (error: any) {
-    console.log("Send code to mail failed: " + error);
+    throw new Error("send verification code mail failed: " + error.message);
   }
 }
